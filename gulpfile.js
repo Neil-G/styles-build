@@ -7,11 +7,12 @@ var path = require('path');
 
 gulp.task('build-sass', function () {
   return gulp.src('./src/index.less')
+  	.pipe(sourcemaps.init())
     .pipe(less({
     	paths: [],
     }).on('error', sass.logError))
     .pipe( postcss([ require('autoprefixer') ]) )
-    .pipe( sourcemaps.write('.') )
+    .pipe( sourcemaps.write('./sourcemaps/') )
     .pipe(gulp.dest('./build'));
 });
 
